@@ -19,6 +19,7 @@ Route::get('test',function (){
     return view('admin.theloai.index');
 });
 Route::get('/','Client\HomeController@index')->name('theloai.index');
+Route::get('/tintuc/{id}','Client\HomeController@show');
 Route::get('/category/{id}','Client\CategoryController@index')->name('client.category.index');
 Route::post('/ajax_load','Client\HomeController@ajax_load');
 //route admin

@@ -67,7 +67,8 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $news = TinTuc::find($id);
+        return view('client.detail')->with('news',$news);
     }
 
     /**
