@@ -11,7 +11,7 @@
 |
 */
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
@@ -22,10 +22,14 @@ Route::get('/','Client\HomeController@index')->name('theloai.index');
 Route::get('/tintuc/{id}','Client\HomeController@show');
 Route::get('/category/{id}','Client\CategoryController@index')->name('client.category.index');
 Route::post('/ajax_load','Client\HomeController@ajax_load');
+Route::post('/hotnews','Client\HomeController@hotnews');
 //route admin
-Route::group(['prefix'=>'admin'],function (){
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
     //rout the loai
     // admin/theloai/index
+    Route::get('/',function(){
+        return view('admin.dashboard');
+    });
     Route::group(['prefix'=>'theloai'],function(){
        Route::get('index','Admin\TheLoaiController@index')->name('theloai.index');
        Route::get('edit/{id}','Admin\TheLoaiController@edit')->name('theloai.edit');
@@ -47,14 +51,21 @@ Route::group(['prefix'=>'admin'],function (){
     //route tin tuc
     Route::group(['prefix'=>'tintuc'],function(){
         Route::get('index','Admin\TinTucController@index')->name('tintuc.index');
-        Route::get('edit','Admin\TinTucController@edit')->name('tintuc.edit');
-        Route::get('add','Admin\TinTucController@add')->name('tintuc.add');
+        Route::get('edit/{id}','Admin\TinTucController@edit')->name('tintuc.edit');
+        Route::get('add','Admin\TinTucController@create')->name('tintuc.add');
+        Route::post('store','Admin\TinTucController@store')->name('tintuc.store');
+        Route::post('update','Admin\TinTucController@update')->name('tintuc.update');
+        Route::get('delete/{id}','Admin\TinTucController@destroy')->name('tintuc.destroy');
     });
     //route user
-    Route::group(['prefix'=>'user'],function(){
-        Route::get('index','Auth/Controller@index')->name('user.index');
-        Route::get('edit','Auth/Controller@edit')->name('user.edit');
-        Route::get('add','Auth/Controller@add')->name('user.add');
+    Route::group(['prefix'=>'user','middleware'=>'author'],function(){
+        Route::get('index','SuperAminController@index')->name('user.index');
+        Route::get('edit/{id}','SuperAminController@edit')->name('user.edit');
+        Route::post('update/{id}','SuperAminController@update')->name('user.update');
+        Route::get('add','SuperAminController@create')->name('user.add');
+        Route::post('store','SuperAminController@store')->name('user.store'); 
+        Route::get('delete/{id}','SuperAminController@destroy')->name('user.destroy');
+        Route::get('show/{id}','SuperAminController@show')->name('user.show');
     });
     // route slide
     Route::group(['prefix'=>'slide'],function(){

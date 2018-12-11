@@ -13,7 +13,7 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thể loại<span class="fa arrow"></span></a>
@@ -46,19 +46,20 @@
                         <a href="{{route('tintuc.index')}}">Danh sách</a>
                     </li>
                     <li>
-                        <a href="{{route('loaitin.create')}}">Thêm tin tức</a>
+                        <a href="{{route('tintuc.add')}}">Thêm tin tức</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            <li>
+                        
+                <li>
                 <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">List User</a>
+                    <a href="{{route('user.index')}}">List User</a>
                     </li>
                     <li>
-                        <a href="#">Add User</a>
+                    <a href="{{route('user.add')}}">Add User</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

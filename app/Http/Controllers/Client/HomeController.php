@@ -18,9 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $newpost = TinTuc::orderBy('id','desc')->take(3)->get();
-
         return view('client.trangchu',compact('newpost'));
     }
 
@@ -34,8 +32,9 @@ class HomeController extends Controller
         }
         return Response::json(json_encode($loaitin),200);
     }
-    public function LoaiTin(){
-
+    public function hotnews(){
+        $news = TinTuc::orderBy('NoiBat','desc')->take(6)->get();
+        return Response::json(json_encode($news),200);
     }
 
     /**
@@ -68,6 +67,9 @@ class HomeController extends Controller
     public function show($id)
     {
         $news = TinTuc::find($id);
+        $news->NoiBat = $news->NoiBat + 1;
+        $news->SoLuotXem = $news->SoLuotXem + 1;
+        $news->save();
         return view('client.detail')->with('news',$news);
     }
 

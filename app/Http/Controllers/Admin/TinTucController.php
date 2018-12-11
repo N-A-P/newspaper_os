@@ -7,6 +7,8 @@ use App\TheLoai;
 use App\TinTuc;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Vmorozov\FileUploads\Uploader;
+use DB;
 
 class TinTucController extends Controller
 {
@@ -17,11 +19,8 @@ class TinTucController extends Controller
      */
     public function index()
     {
-//      $tintuc = LoaiTin::find(10);
-//
-//      foreach ($tintuc->tintuc as $item){
-//         echo $item->TieuDe;
-//      }
+        $model = TinTuc::all();
+        return view('admin.tintuc.index',compact('model'));
     }
 
     /**
@@ -31,7 +30,8 @@ class TinTucController extends Controller
      */
     public function create()
     {
-        //
+        $loaitin = LoaiTin::all('id','Ten');
+        return view('admin.tintuc.create',compact('loaitin'));
     }
 
     /**
@@ -42,7 +42,32 @@ class TinTucController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //  return $request;
+        $model = new TinTuc;
+        // if($request->hasFile('Hinh')){
+        //     if($request->file('Hinh')->isValid()){
+        //         $extd = strtoupper($request->file('Hinh')->getClientOriginalExtension());
+        //         if($extd == 'JPG' || $extd == 'PNG' || $extd == 'JPEG' || $extd == 'GIF' )
+        //         {
+        //             $file_name = rand(0,999999).$request->file('Hinh');
+        //             $request->file('Hinh')->move('/upload/tintuc',$file_name);
+        //             $model->Hinh = $file_name;
+        //         }
+        //         else
+        //             return back()->with('error','Chỉ chấp nhận các file ảnh có định dạng jpg, png và gif');
+        //     }
+        // }
+        $model->Hinh = Uploader::uploadFile($request->file('Hinh'), 'upload/tintuc');
+        $model->Hinh = substr($model->Hinh,14);
+        $model->TieuDe = $request->TieuDe;
+        $model->TieuDeKhongDau = $model->TieuDe;
+        $model->TomTat = $request->TomTat;
+        $model->Noidung = $request->NoiDung;
+        $model->NoiBat = 1;
+        $model->SoLuotXem = 0;
+        $model->idLoaiTin = $request->idLoaiTin;
+        $model->save();
+        return back();
     }
 
     /**
@@ -64,7 +89,9 @@ class TinTucController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = TinTuc::find($id);
+        $loaitin = LoaiTin::all('id','Ten');
+        return view('admin.tintuc.edit',compact('model','loaitin'));
     }
 
     /**
@@ -74,9 +101,24 @@ class TinTucController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $model =  TinTuc::find($request->id);
+        if($request->hasFile('Hinh'))
+        {
+            $model->Hinh = Uploader::uploadFile($request->file('Hinh'), 'upload/tintuc');
+            $model->Hinh = substr($model->Hinh,14);
+        }
+        $model->TieuDe = $request->TieuDe;
+        $model->TieuDeKhongDau = $model->TieuDe;
+        $model->TomTat = $request->TomTat;
+        $model->Noidung = $request->NoiDung;
+        $model->NoiBat = 1;
+        $model->SoLuotXem = 0;
+        $model->idLoaiTin = $request->idLoaiTin;
+        $model->save();
+        return back();
+
     }
 
     /**
@@ -87,6 +129,8 @@ class TinTucController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('tintuc')->where('id',$id)->delete();
+        
+        return back();
     }
 }

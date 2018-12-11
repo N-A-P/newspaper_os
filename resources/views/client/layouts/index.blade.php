@@ -9,14 +9,16 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Title -->
-    <title>Trang tin tức tổng hợp &amp; Lifestyle Magazine Template</title>
+    <title>Trang tin tức tổng hợp </title>
     <base href="{{asset('')}}">
     <!-- Favicon -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="icon" href="client_asset/img/core-img/favicon.ico">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="client_asset/style.css">
-
+    <script src="client_asset/js/jquery/jquery-2.2.4.min.js"></script>
 </head>
 
 <body>
@@ -54,14 +56,7 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul id="category">
-                                {{--<li><a href="#">Politics</a></li>--}}
-                                {{--<li><a href="#">Breaking News</a></li>--}}
-                                {{--<li><a href="#">Business</a></li>--}}
-                                {{--<li><a href="#">Technology</a></li>--}}
-                                {{--<li><a href="#">Health</a></li>--}}
-                                {{--<li><a href="#">Travel</a></li>--}}
-                                {{--<li><a href="#">Sports</a></li>--}}
-                                <li><a href="contact.html">Contact</a></li>
+
                             </ul>
                         </div>
                         <!-- Nav End -->
@@ -78,10 +73,13 @@
             <div class="col-12 col-md-6 col-lg-8">
                @yield('content')
             </div>
-           @include('client.layouts.hot')
+            <div class="col-12 col-md-6 col-lg-4" id="hotnew">
+                @include('client.layouts.hot')
+            </div>
         </div>
     </div>
 </div>
+<br>
 
 <footer class="footer-area">
 
@@ -91,90 +89,62 @@
             <div class="row">
 
                 <!-- Footer Widget Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
+                <div class="col-12 col-sm-6 col-lg-4" style="margin-right: 180px;">
+                    
                     <div class="footer-widget-area mt-80">
-                        <!-- Footer Logo -->
-                        <div class="footer-logo">
-                            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-                        </div>
+                        <!-- Footer Logo -->  <h2 class="widget-title">Trụ sở</h2>
+                      
+                      
+                      <p>
+                            Giấy phép số 1818/GP-TTĐT do Sở Thông tin và Truyền thông Hà Nội cấp ngày 05/05/2017 
+                            Đơn vị chủ quản: Công ty Cổ phần Công nghệ The Newspaper <br>
+                            Địa chỉ: Nhổn, Bắc Từ Liêm, Hà Nội <br>
+                            Tel: 091232824            <br>
+                            Email: conact@thenewspaper.com
+                      </p>   
+                          <p>  The Newspaper tổng hợp và sắp xếp các thông tin tự động 
+                            bởi chương trình máy tính
+                      </p>
+                    </div>
+                </div>
+
+            
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-sm-4 col-lg-3">
+                    <div class="footer-widget-area mt-80">
+                        <!-- Title -->
+                        <h2 class="widget-title">Contact</h2>
                         <!-- List -->
                         <ul class="list">
-                            <li><a href="mailto:contact@youremail.com">contact@youremail.com</a></li>
-                            <li><a href="tel:+4352782883884">+43 5278 2883 884</a></li>
-                            <li><a href="http://yoursitename.com">www.yoursitename.com</a></li>
+                            <li><a class="fa fa-facebook-square" href="https://facbook.com"> Facebook.com/TheNewspaper</a></li>
+                            <hr>
+                            <li><a class="fa fa-youtube-square" href="https://youtube.com"> YouTube.com/TheNewspaper</a></li>
+                            <hr><li><a class="fa fa-twitter-square" href="https://twitter.com"> Twitter.com/TheNewspaper</a></li>
+                            <hr><li><a class="fa fa-reddit-square" href="https://reddit.com"> Reddit.com/r/TheNewspaper</a></li>
+                            
                         </ul>
                     </div>
                 </div>
 
                 <!-- Footer Widget Area -->
-                <div class="col-12 col-sm-6 col-lg-2">
+                <br>
+                
+                <div class="col-12 col-sm-4 col-lg-3">
                     <div class="footer-widget-area mt-80">
                         <!-- Title -->
-                        <h4 class="widget-title">Politics</h4>
+                        <h2 class="widget-title">About us</h2>
                         <!-- List -->
                         <ul class="list">
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Markets</a></li>
-                            <li><a href="#">Tech</a></li>
-                            <li><a href="#">Luxury</a></li>
+                            <li><p class="glyphicon glyphicon-user"> Nguyễn Anh Phương</p></li><hr>
+                            <li><p class="glyphicon glyphicon-user"> Triệu Kim Hậu</p></li><hr>
+                            <li><p class="glyphicon glyphicon-user"> Trần Đức Hiếu</p></li> 
                         </ul>
                     </div>
                 </div>
 
                 <!-- Footer Widget Area -->
-                <div class="col-12 col-sm-4 col-lg-2">
-                    <div class="footer-widget-area mt-80">
-                        <!-- Title -->
-                        <h4 class="widget-title">Featured</h4>
-                        <!-- List -->
-                        <ul class="list">
-                            <li><a href="#">Football</a></li>
-                            <li><a href="#">Golf</a></li>
-                            <li><a href="#">Tennis</a></li>
-                            <li><a href="#">Motorsport</a></li>
-                            <li><a href="#">Horseracing</a></li>
-                            <li><a href="#">Equestrian</a></li>
-                            <li><a href="#">Sailing</a></li>
-                            <li><a href="#">Skiing</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Footer Widget Area -->
-                <div class="col-12 col-sm-4 col-lg-2">
-                    <div class="footer-widget-area mt-80">
-                        <!-- Title -->
-                        <h4 class="widget-title">FAQ</h4>
-                        <!-- List -->
-                        <ul class="list">
-                            <li><a href="#">Aviation</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Traveller</a></li>
-                            <li><a href="#">Destinations</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Food/Drink</a></li>
-                            <li><a href="#">Hotels</a></li>
-                            <li><a href="#">Partner Hotels</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Footer Widget Area -->
-                <div class="col-12 col-sm-4 col-lg-2">
-                    <div class="footer-widget-area mt-80">
-                        <!-- Title -->
-                        <h4 class="widget-title">+More</h4>
-                        <!-- List -->
-                        <ul class="list">
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Arts</a></li>
-                            <li><a href="#">Autos</a></li>
-                            <li><a href="#">Luxury</a></li>
-                        </ul>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -186,7 +156,7 @@
                 <div class="col-12">
                     <!-- Copywrite -->
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
             </div>
@@ -197,7 +167,7 @@
 
 <!-- ##### All Javascript Files ##### -->
 <!-- jQuery-2.2.4 js -->
-<script src="client_asset/js/jquery/jquery-2.2.4.min.js"></script>
+
 <!-- Popper js -->
 <script src="client_asset/js/bootstrap/popper.min.js"></script>
 <!-- Bootstrap js -->
@@ -220,7 +190,6 @@
                 async: false,
                 success: function(data) {
                     result = data;
-                    console.log(data[0][0].Ten);
                 }
             });
             return result;
@@ -231,18 +200,15 @@
         var lt = '';
         for(var i = 0;i< element.length ; i++)
         {
-             lt += '<li ><a href="#">'+element[i].Ten +'</a></li>';
+             lt += '<li ><a href="/category/'+ element[i].id +'">'+element[i].Ten +'</a></li>';
         }
 
-        var str = '<li class="cn-dropdown-item has-down"><a href="#">'
+        var str = '<li class="cn-dropdown-item has-down"><a>'
             + element[0]['theloai'].Ten + '</a><ul class="dropdown">'+ lt +'</ul></li>';
-            console.log(str);
+            
            // console.log(element[0]['theloai'].Ten +'asd');
         $('#category').prepend(str);
     });
-
-   
-      
 
 </script>
 </body>

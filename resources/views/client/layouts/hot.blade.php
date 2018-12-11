@@ -1,97 +1,33 @@
-<div class="col-12 col-md-6 col-lg-4">
-    <!-- Single Featured Post -->
-    <div class="single-blog-post small-featured-post d-flex">
-        <div class="post-thumb">
-            <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-        </div>
-        <div class="post-data">
-            <a href="#" class="post-catagory">Finance</a>
-            <div class="post-meta">
-                <a href="#" class="post-title">
-                    <h6>Pellentesque mattis arcu massa, nec fringilla turpis eleifend id.</h6>
-                </a>
-                <p class="post-date"><span>7:00 AM</span> | <span>April 14</span></p>
-            </div>
-        </div>
-    </div>
 
-    <!-- Single Featured Post -->
-    <div class="single-blog-post small-featured-post d-flex">
-        <div class="post-thumb">
-            <a href="#"><img src="img/bg-img/20.jpg" alt=""></a>
-        </div>
-        <div class="post-data">
-            <a href="#" class="post-catagory">Politics</a>
-            <div class="post-meta">
-                <a href="#" class="post-title">
-                    <h6>Sed a elit euismod augue semper congue sit amet ac sapien.</h6>
-                </a>
-                <p class="post-date"><span>7:00 AM</span> | <span>April 14</span></p>
-            </div>
-        </div>
-    </div>
 
-    <!-- Single Featured Post -->
-    <div class="single-blog-post small-featured-post d-flex">
-        <div class="post-thumb">
-            <a href="#"><img src="img/bg-img/21.jpg" alt=""></a>
-        </div>
-        <div class="post-data">
-            <a href="#" class="post-catagory">Health</a>
-            <div class="post-meta">
-                <a href="#" class="post-title">
-                    <h6>Pellentesque mattis arcu massa, nec fringilla turpis eleifend id.</h6>
-                </a>
-                <p class="post-date"><span>7:00 AM</span> | <span>April 14</span></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Single Featured Post -->
-    <div class="single-blog-post small-featured-post d-flex">
-        <div class="post-thumb">
-            <a href="#"><img src="img/bg-img/22.jpg" alt=""></a>
-        </div>
-        <div class="post-data">
-            <a href="#" class="post-catagory">Finance</a>
-            <div class="post-meta">
-                <a href="#" class="post-title">
-                    <h6>Augue semper congue sit amet ac sapien. Fusce consequat.</h6>
-                </a>
-                <p class="post-date"><span>7:00 AM</span> | <span>April 14</span></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Single Featured Post -->
-    <div class="single-blog-post small-featured-post d-flex">
-        <div class="post-thumb">
-            <a href="#"><img src="img/bg-img/23.jpg" alt=""></a>
-        </div>
-        <div class="post-data">
-            <a href="#" class="post-catagory">Travel</a>
-            <div class="post-meta">
-                <a href="#" class="post-title">
-                    <h6>Pellentesque mattis arcu massa, nec fringilla turpis eleifend id.</h6>
-                </a>
-                <p class="post-date"><span>7:00 AM</span> | <span>April 14</span></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Single Featured Post -->
-    <div class="single-blog-post small-featured-post d-flex">
-        <div class="post-thumb">
-            <a href="#"><img src="img/bg-img/24.jpg" alt=""></a>
-        </div>
-        <div class="post-data">
-            <a href="#" class="post-catagory">Politics</a>
-            <div class="post-meta">
-                <a href="#" class="post-title">
-                    <h6>Augue semper congue sit amet ac sapien. Fusce consequat.</h6>
-                </a>
-                <p class="post-date"><span>7:00 AM</span> | <span>April 14</span></p>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+   $.extend({
+        getData: function (url) {
+            var result = null;
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,
+                type: 'post',
+                dataType: 'json',
+                async: false,
+                success: function(data) {
+                    result = data;
+                }
+            });
+            return result;
+        }
+    });
+    var data  = JSON.parse($.getData('/hotnews'));
+  
+    data.forEach(element => {
+        var str = '';
+        str = '<div class="single-blog-post small-featured-post d-flex"><div class="post-thumb"><a href="/tintuc/'
+            + element.id + '"><img src="/upload/tintuc/'
+            + element.Hinh + '" alt=""></a></div><div class="post-data"><div class="post-meta"> <a href="/tintuc/'
+            + element.id + '" class="post-title"><h6>'
+            + element.TieuDe+'</h6></a><span>view: ' + element.SoLuotXem + '&emsp;&emsp;&emsp; </span> <span class="post-date">&emsp; &emsp; &emsp;&emsp;'+ element.created_at.substr(0,10) + '</span> </div> </div> </div>';
+        $('#hotnew').append(str);
+        });
+</script>

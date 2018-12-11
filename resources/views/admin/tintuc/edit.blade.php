@@ -4,47 +4,47 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Category
-                        <small>Edit</small>
+                    <h1 class="page-header">Tin tức
+                        <small>Add</small>
                     </h1>
                 </div>
                 <!-- /.col-lg-12 -->
-                <div class="col-lg-7" style="padding-bottom:120px">
-                    <form action="" method="POST">
+                <div class="col-lg-12" style="padding-bottom:120px">
+                <form action="{{route('tintuc.update')}}" method="POST" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                <input type="text" hidden="hidden" name="id" value="{{$model->id}}">
+                    <div class="row">
+                        <div class="col col-md-4">
                         <div class="form-group">
-                            <label>Category Parent</label>
-                            <select class="form-control">
-                                <option value="0">Please Choose Category</option>
-                                <option value="">Tin Tức</option>
+                            <label>Loại tin</label>
+                            <select class="form-control" name="idLoaiTin" id="idLoaiTin">
+                                @foreach ($loaitin as $item)
+                                <option value="{{$item->id}}">{{$item->Ten}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Category Name</label>
-                            <input class="form-control" name="txtCateName" placeholder="Please Enter Category Name" />
+                            <label>Tiêu đề</label>
+                        <input class="form-control" value="{{$model->TieuDe}}" name="TieuDe" required />
                         </div>
                         <div class="form-group">
-                            <label>Category Order</label>
-                            <input class="form-control" name="txtOrder" placeholder="Please Enter Category Order" />
+                            <label>Tóm tắt</label>
+                            <input class="form-control" value="{{$model->TomTat}}" name="TomTat" required/>
                         </div>
                         <div class="form-group">
-                            <label>Category Keywords</label>
-                            <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
+                            <label>Hình</label>
+                            <input type="file" class="form-control" name="Hinh"/>
                         </div>
-                        <div class="form-group">
-                            <label>Category Description</label>
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Category Status</label>
-                            <label class="radio-inline">
-                                <input name="rdoStatus" value="1" checked="" type="radio">Visible
-                            </label>
-                            <label class="radio-inline">
-                                <input name="rdoStatus" value="2" type="radio">Invisible
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-default">Category Edit</button>
+                        <button type="submit" class="btn btn-default">Sửa</button>
                         <button type="reset" class="btn btn-default">Reset</button>
+                    </div>
+                    <div class="col col-md-8">
+                        <div class="form-group">
+                            <label>Nội dung</label>
+                            <textarea id="editor" class="form-control" name="NoiDung" rows="12" required> {{$model->NoiDung}}</textarea>
+                        </div>
+                    </div>
+                    </div>
                     </form>
                 </div>
             </div>

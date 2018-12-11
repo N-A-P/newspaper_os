@@ -4,8 +4,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Category
-                        <small>List</small>
+                    <h1 class="page-header">Người dùng
+                        <small>danh sách</small>
                     </h1>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -13,30 +13,27 @@
                     <thead>
                     <tr align="center">
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Category Parent</th>
-                        <th>Status</th>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>Quyền</th>
+                        <th>Ngày tạo</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="odd gradeX" align="center">
-                        <td>1</td>
-                        <td>Tin Tức</td>
-                        <td>None</td>
-                        <td>Hiện</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
-                    <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>Bóng Đá</td>
-                        <td>Thể Thao</td>
-                        <td>Ẩn</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
+                    @foreach ($data as $item)
+                        <tr class="even gradeC" align="center">
+                            <td>{{$item->id }}</td>
+                            <td>{{$item->name }}</td>
+                            <td>{{$item->quyen }}</td>
+                            <td>{{$item->email }}</td>
+                            <td>{{$item->created_at }}</td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('user.destroy',$item->id)}}"> Delete</a></td>
+                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('user.edit',$item->id)}}">Edit</a></td>
+                        </tr>   
+                    @endforeach
+                    
                     </tbody>
                 </table>
             </div>

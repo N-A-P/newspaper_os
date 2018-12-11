@@ -6,16 +6,13 @@
                     <div class="top-header-content d-flex align-items-center justify-content-between">
                         <!-- Logo -->
                         <div class="logo">
-                            <!--  <a href="index.html"><img src="img/core-img/logo.png" alt=""></a> -->
+                              <a href="/"><p style="font-style:italic; color:white; font-size:28px; "><b>The News Paper</b> </p> </a>
+                              
                         </div>
 
                         <!-- Login Search Area -->
                         <div class="login-search-area d-flex align-items-center">
                             <!-- Login -->
-                            <div class="login d-flex">
-                                <a href="#">Login</a>
-                                <a href="#">Register</a>
-                            </div>
                             <!-- Search Form -->
                             <div class="search-form">
                                 <form action="#" method="post">
